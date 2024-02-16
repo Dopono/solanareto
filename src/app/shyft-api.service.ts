@@ -7,14 +7,14 @@ import { map,of } from "rxjs";
 export class ShyftApiService {
     private readonly _httpClient = inject(HttpClient);
     private readonly _header = {'x-api-key': 'D3ZmUJrZsWG4ALBs'};
-    private readonly _mint = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
+    private readonly _mint = '7EYnhQoR9YM3N7UoaKRoA44Uy8JeaZV3qyouov87awMs';
 
     getAccount(publicKey:string | undefined | null) {
         if (!publicKey) {
             return of(null);
         }
 
-        const url = new URL('https://api.shyft.to/sol/vl/wallet/token_balance');
+        const url = new URL('https://api.shyft.to/sol/v1/wallet/token_balance');
 
         url.searchParams.append('network', 'mainnet-beta');
         url.searchParams.append('wallet', publicKey);

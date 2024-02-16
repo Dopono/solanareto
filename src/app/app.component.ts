@@ -1,15 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { HdWalletMultiButtonComponent } from '@heavy-duty/wallet-adapter-material';
 import { ShyftApiService } from './shyft-api.service';
 import { WalletStore } from '@heavy-duty/wallet-adapter';
 import { toSignal} from '@angular/core/rxjs-interop';
 import { computedAsync } from 'ngxtension/computed-async';
 import { MatAnchor } from '@angular/material/button';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, HdWalletMultiButtonComponent, MatAnchor],
+  imports: [RouterModule, HdWalletMultiButtonComponent, MatAnchor, RouterOutlet, RouterLink, DecimalPipe],
   selector: 'wallet-root',
   template: `
   <header class="py-8 relative">
@@ -22,7 +23,7 @@ import { MatAnchor } from '@angular/material/button';
     @if (account()) {
       <div class="absolute top-4 left-4 flex justify-center items-center gap-2">
         <img [src]="account()?.info?.image" class="w-8 h-8" />
-        <p class="text-xl">{{ account()?.balance}}</p>
+        <p class="text-xl">{{ account()?.balance | number}}</p>
       </div>
     }
 
